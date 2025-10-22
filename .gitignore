@@ -10,3 +10,4 @@ fs_test/
 json_test/
 nucad_test/
 generated_model.stl
+deprecated/
