@@ -1,0 +1,175 @@
+{
+    "feature 1": {
+        "name": "Sketch 1",
+        "type": "newSketch",
+        "id": "FosyKbn5LPT43cf_0",
+        "primitives": {
+            "7BQTRORBnvhf": {
+                "type": "skLineSegment",
+                "points": [
+                    -0.003133299999474967,
+                    -0.015671238873171872,
+                    -1.0,
+                    0.0,
+                    -0.04965862741065427,
+                    0.04965862741065427
+                ],
+                "geometry": {
+                    "start": [
+                        0.046525327411179304,
+                        -0.015671238873171872
+                    ],
+                    "end": [
+                        -0.05279192741012924,
+                        -0.015671238873171872
+                    ]
+                },
+                "construction": false
+            },
+            "SDYmd602zjP5": {
+                "type": "skLineSegment",
+                "points": [
+                    -0.044175668020285185,
+                    -0.0034583495154090482,
+                    0.576477600063762,
+                    0.8171129521826986,
+                    -0.014946390612386399,
+                    0.014946390612386399
+                ],
+                "geometry": {
+                    "start": [
+                        -0.05279192741012924,
+                        -0.015671238873171872
+                    ],
+                    "end": [
+                        -0.03555940863044113,
+                        0.008754539842353776
+                    ]
+                },
+                "construction": false
+            },
+            "qQDewHSdGXXp": {
+                "type": "skLineSegment",
+                "points": [
+                    0.005482959390369087,
+                    -0.0034583495154090482,
+                    0.9584654925894244,
+                    -0.2852085193596294,
+                    -0.042820913572932814,
+                    0.042820913572932814
+                ],
+                "geometry": {
+                    "start": [
+                        -0.03555940863044113,
+                        0.008754539842353777
+                    ],
+                    "end": [
+                        0.046525327411179304,
+                        -0.015671238873171872
+                    ]
+                },
+                "construction": false
+            }
+        },
+        "sketch_plane": "Top"
+    },
+    "feature 2": {
+        "name": "Extrude 1",
+        "type": "extrude",
+        "id": "F2enAE6v5t2PHmm_0",
+        "parameters": {
+            "domain": "OperationDomain.MODEL",
+            "bodyType": "ExtendedToolBodyType.SOLID",
+            "operationType": "NewBodyOperationType.NEW",
+            "surfaceOperationType": "NewSurfaceOperationType.NEW",
+            "flatOperationType": "FlatOperationType.REMOVE",
+            "entities": [
+                []
+            ],
+            "surfaceEntities": [],
+            "wallShape": [],
+            "midplane": "false",
+            "thickness1": {
+                "default": "try(0.25 * inch)",
+                "value": "0.25",
+                "unit": "in"
+            },
+            "flipWall": "false",
+            "thickness2": {
+                "default": "try(0 * inch)",
+                "value": "0",
+                "unit": "in"
+            },
+            "thickness": {
+                "default": "try(0.25 * inch)",
+                "value": "0.25",
+                "unit": "in"
+            },
+            "endBound": "BoundingType.BLIND",
+            "oppositeDirection": "false",
+            "depth": {
+                "default": "try(1 * inch)",
+                "value": "1",
+                "unit": "in"
+            },
+            "endBoundEntityFace": [],
+            "endBoundEntityBody": [],
+            "endBoundEntityVertex": [],
+            "hasOffset": "false",
+            "offsetDistance": {
+                "default": "try(1 * inch)",
+                "value": "1",
+                "unit": "in"
+            },
+            "offsetOppositeDirection": "false",
+            "hasExtrudeDirection": "false",
+            "extrudeDirection": [],
+            "startOffset": "false",
+            "startOffsetBound": "StartOffsetType.BLIND",
+            "startOffsetDistance": {
+                "default": "try(1 * inch)",
+                "value": "1",
+                "unit": "in"
+            },
+            "startOffsetOppositeDirection": "false",
+            "startOffsetEntity": [],
+            "symmetric": "false",
+            "hasDraft": "false",
+            "draftAngle": {
+                "default": "try(3 * degree)",
+                "value": "3",
+                "unit": "deg"
+            },
+            "draftPullDirection": "false",
+            "hasSecondDirection": "false",
+            "secondDirectionBound": "BoundingType.BLIND",
+            "secondDirectionOppositeDirection": "true",
+            "secondDirectionDepth": {
+                "default": "try(1 * inch)",
+                "value": "1",
+                "unit": "in"
+            },
+            "secondDirectionBoundEntityFace": [],
+            "secondDirectionBoundEntityBody": [],
+            "secondDirectionBoundEntityVertex": [],
+            "hasSecondDirectionOffset": "false",
+            "secondDirectionOffsetDistance": {
+                "default": "try(1 * inch)",
+                "value": "1",
+                "unit": "in"
+            },
+            "secondDirectionOffsetOppositeDirection": "false",
+            "hasSecondDirectionDraft": "false",
+            "secondDirectionDraftAngle": {
+                "default": "try(3 * degree)",
+                "value": "3",
+                "unit": "deg"
+            },
+            "secondDirectionDraftPullDirection": "false",
+            "defaultScope": "false",
+            "booleanScope": [],
+            "defaultSurfaceScope": "true",
+            "booleanSurfaceScope": []
+        }
+    }
+}

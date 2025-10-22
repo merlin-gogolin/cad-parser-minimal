@@ -1,0 +1,11 @@
+imageio
+pillow
+psutil
+numpy
+gymnasium
+flake8
+pytest-cov
+pytest
+matplotlib
+tqdm
+hydra-core

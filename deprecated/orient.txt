@@ -1,0 +1,163 @@
+FeatureScript 2770;
+import(path : "onshape/std/geometry.fs", version : "2770.0");
+
+annotation { "Default Units" : ["cubicInch", "degree", "degreePerSecond", "footPoundForce", "inch", "inchPerSecondSquared", "inchPound", "pound", "poundForce", "poundPerCubicInch", "poundPerSquareInch", "second", "squareInch"] }
+export function main()
+{
+    return build({});
+}
+
+export function build()
+{
+    return buildPrivate({});
+}
+
+export function build(configuration is map)
+{
+    return buildPrivate(configuration);
+}
+
+const buildPrivate = definePartStudio(function(context is Context, configuration is map, lookup is function)
+    precondition
+    {
+    }
+    {
+        const id is Id = newId();
+        annotation { 'unused' : true }
+        var features = {};
+        features.Ft9T5rP3KjNu5VU_0 = function(id)
+            {
+                annotation { 'unused' : true }
+                var features = features;
+                if (true)
+                {
+                    const initialGuessFt9T5rP3KjNu5VU_0 = { "aiMErioZl7K3" : [-0.029317374308122507, -0.0017063524316407522, 0.0, 1.0, -0.02815176326992213, 0.02815176326992213], "XTHINQlw92jU" : [9.504548035318972E-6, 0.013222705419140689, 0.9116233545968677, -0.41102659202727215, -0.032169951228516486, 0.032169951228516486], "F8Z1h1OWXcvG" : [9.504548035318972E-6, -0.014929057850781441, -0.8911752730030049, -0.4536591592682987, -0.03290809310421581, 0.03290809310421581] };
+                    {
+                    }
+                    var bzLSxGmYwcJuKq_query;
+                    bzLSxGmYwcJuKq_query=qCompressed(1.0,"%B5$QueryM4Sa$entityTypeBa$EntityTypeS4$FACESb$historyTypeS8$CREATIONSb$operationIdB2$IdA1S3.7$TopplaneOpS9$queryTypeS5$DUMMY",id);
+                    annotation { "Feature Name" : "Sketch 1" }
+                    var sketch = newSketch(context, id + "Ft9T5rP3KjNu5VU_0", { "sketchPlane" : qUnion([bzLSxGmYwcJuKq_query]), "disableImprinting" : false });
+                    skLineSegment(sketch, "aiMErioZl7K3", { "construction" : false, "index" : "1" });
+                    skLineSegment(sketch, "XTHINQlw92jU", { "construction" : false, "index" : "2" });
+                    skLineSegment(sketch, "F8Z1h1OWXcvG", { "construction" : false, "index" : "3" });
+                    {
+                        skConstraint(sketch, "aiMErioZl7K3.endSnap0", { "constraintType" : ConstraintType.VERTICAL, "index" : "1", "name" : "", "localFirst" : "aiMErioZl7K3" });
+                    }
+                    {
+                        skConstraint(sketch, "XTHINQlw92jU.startSnap", { "constraintType" : ConstraintType.COINCIDENT, "index" : "1", "name" : "", "localFirst" : "XTHINQlw92jU.start", "localSecond" : "aiMErioZl7K3.end" });
+                    }
+                    {
+                        var KjLltJnHaKfeEa_query;
+                        KjLltJnHaKfeEa_query=qCompressed(1.0,"%B5$QueryM4Sa$entityTypeBa$EntityTypeS6$VERTEXSb$historyTypeS8$CREATIONSb$operationIdB2$IdA1S6.7$OriginpointOpS9$queryTypeS5$DUMMY",id);
+                        skConstraint(sketch, "XTHINQlw92jU.endSnap0", { "constraintType" : ConstraintType.HORIZONTAL, "index" : "1", "name" : "", "localFirst" : "XTHINQlw92jU.end", "externalSecond" : qUnion([KjLltJnHaKfeEa_query]) });
+                    }
+                    {
+                        skConstraint(sketch, "F8Z1h1OWXcvG.startSnap", { "constraintType" : ConstraintType.COINCIDENT, "index" : "2", "name" : "", "localFirst" : "F8Z1h1OWXcvG.start", "localSecond" : "XTHINQlw92jU.end" });
+                    }
+                    {
+                        skConstraint(sketch, "F8Z1h1OWXcvG.endSnap0", { "constraintType" : ConstraintType.COINCIDENT, "index" : "3", "name" : "", "localFirst" : "F8Z1h1OWXcvG.end", "localSecond" : "aiMErioZl7K3.start" });
+                    }
+                    skSetInitialGuess(sketch, initialGuessFt9T5rP3KjNu5VU_0);
+                    skSolve(sketch);
+                }
+            };
+        try(features.Ft9T5rP3KjNu5VU_0(id));
+        features.Fv4ednQa7DHAyTU_0 = function(id)
+            {
+                annotation { 'unused' : true }
+                var features = features;
+                if (true)
+                {
+                    {
+                    }
+                    var OhSWvDrMAPyKPU_query;
+                    OhSWvDrMAPyKPU_query=qCompressed(1.0,"&1da$eJyFkFFvgjAUhf9M96ixICKPiEUbB+ht3dQXg7SZdSqsVI3/fhUXs2VL9tK095zz3Xv7NPDQ7CT1NfEYdpBQdX7YqLdTblR5HOYmD3Hi/Fb4tZKsj3g2zZ6z0dJe5dEoo2QduqETdSxtg4TU6ixFrMtDU8nvpustPMgReTxYF5HhiNjIVtWm1NcvfAQk5DRLrVBWUjedqRg4iIoQM4zbPRSbgHt66k526cl7ma87F6VlVrEAfdy2akACsQnh0XhNUk75kklUv0tTbO8DUMEKlKuEaFWu9v7EBQ964EMfgqiwbVqi7SN1qLQ6GiiYj2gyBZryYQvfN4Vucz5SsIECBEiLXfAxTWf7S+Ds5t8M2LEO7AL2/iXE/RXe4ux1UZxHfxLAi3z7f3EYkZ/aJyuclW8=",id);
+                    annotation { "Feature Name" : "Extrude 1" }
+                    extrude(context, id + "Fv4ednQa7DHAyTU_0", { "domain" : OperationDomain.MODEL, "bodyType" : ExtendedToolBodyType.SOLID, "operationType" : NewBodyOperationType.NEW, "surfaceOperationType" : NewSurfaceOperationType.NEW, "flatOperationType" : FlatOperationType.REMOVE, "entities" : qUnion([OhSWvDrMAPyKPU_query]), "surfaceEntities" : qUnion([]), "wallShape" : qUnion([]), "midplane" : false, "thickness1" : { 'value' : try(0.25 * inch), 'expression' : "0.25 in" }.value, "flipWall" : false, "thickness2" : { 'value' : try(0 * inch), 'expression' : "0 in" }.value, "thickness" : { 'value' : try(0.25 * inch), 'expression' : "0.25 in" }.value, "endBound" : BoundingType.BLIND, "oppositeDirection" : false, "depth" : 2.4 * inch, "endBoundEntityFace" : qUnion([]), "endBoundEntityBody" : qUnion([]), "endBoundEntityVertex" : qUnion([]), "hasOffset" : false, "offsetDistance" : { 'value' : try(1 * inch), 'expression' : "1 in" }.value, "offsetOppositeDirection" : false, "hasExtrudeDirection" : false, "extrudeDirection" : qUnion([]), "startOffset" : false, "startOffsetBound" : StartOffsetType.BLIND, "startOffsetDistance" : { 'value' : try(1 * inch), 'expression' : "1 in" }.value, "startOffsetOppositeDirection" : false, "startOffsetEntity" : qUnion([]), "symmetric" : false, "hasDraft" : false, "draftAngle" : { 'value' : try(3 * degree), 'expression' : "3 deg" }.value, "draftPullDirection" : false, "hasSecondDirection" : false, "secondDirectionBound" : BoundingType.BLIND, "secondDirectionOppositeDirection" : true, "secondDirectionDepth" : { 'value' : try(1 * inch), 'expression' : "1 in" }.value, "secondDirectionBoundEntityFace" : qUnion([]), "secondDirectionBoundEntityBody" : qUnion([]), "secondDirectionBoundEntityVertex" : qUnion([]), "hasSecondDirectionOffset" : false, "secondDirectionOffsetDistance" : { 'value' : try(1 * inch), 'expression' : "1 in" }.value, "secondDirectionOffsetOppositeDirection" : false, "hasSecondDirectionDraft" : false, "secondDirectionDraftAngle" : { 'value' : try(3 * degree), 'expression' : "3 deg" }.value, "secondDirectionDraftPullDirection" : false, "defaultScope" : false, "booleanScope" : qUnion([]), "defaultSurfaceScope" : true, "booleanSurfaceScope" : qUnion([]) });
+                }
+            };
+        try(features.Fv4ednQa7DHAyTU_0(id));
+        features.FEweL7tDsr0M6iY_1 = function(id)
+            {
+                annotation { 'unused' : true }
+                var features = features;
+                if (true)
+                {
+                    const initialGuessFEweL7tDsr0M6iY_1 = { "hBGR35414FbA" : [0.005426218977846048, 0.02271266819292539, 1.0, 0.0, 0.012267714413092339, -1.0], "hBGR35414FbA.centerSnap0" : [0.005426218977846048, 0.06096] };
+                    {
+                    }
+                    var QoCjtuZgcRMKFC_query;
+                    QoCjtuZgcRMKFC_query=qCompressed(1.0,"%B5$QueryM5S12$disambiguationDataA1M2S12$disambiguationTypeS13$ORIGINAL_DEPENDENCYS9$originalsA1C0M5Sa$entityTypeBa$EntityTypeS4$EDGESb$historyTypeS8$CREATIONSb$operationIdB2$IdA1S11.6$Ft9T5rP3KjNu5VU_0wireOpS9$queryTypeSd$SKETCH_ENTITYSe$sketchEntityIdSc$XTHINQlw92jUR4C6S4$FACER6R7R8CbA1S11.9$Fv4ednQa7DHAyTU_0opExtrudeRbSa$SWEPT_FACE",id);
+                    annotation { "Feature Name" : "Sketch 2" }
+                    var sketch = newSketch(context, id + "FEweL7tDsr0M6iY_1", { "sketchPlane" : qUnion([QoCjtuZgcRMKFC_query]), "disableImprinting" : false });
+                    skCircle(sketch, "hBGR35414FbA", { "construction" : false, "index" : "1" });
+                    skPoint(sketch, "hBGR35414FbA.centerSnap0", { "construction" : false, "index" : "1" });
+                    {
+                        var eOumwfmOAUfCQv_query;
+                        eOumwfmOAUfCQv_query=qCompressed(1.0,"%B5$QueryM5S12$disambiguationDataA1M2S12$disambiguationTypeS13$ORIGINAL_DEPENDENCYS9$originalsA1C0M5Sa$entityTypeBa$EntityTypeS4$EDGESb$historyTypeS8$CREATIONSb$operationIdB2$IdA1S11.6$Ft9T5rP3KjNu5VU_0wireOpS9$queryTypeSd$SKETCH_ENTITYSe$sketchEntityIdSc$XTHINQlw92jUR4C6S4$FACER6R7R8CbA1S11.9$Fv4ednQa7DHAyTU_0opExtrudeRbSa$SWEPT_FACE",id);
+                        var BhXUTgFPmMjmWu_query;
+                        BhXUTgFPmMjmWu_query=qCompressed(1.0,"%B5$QueryM6S12$disambiguationDataA1M2S12$disambiguationTypeS13$ORIGINAL_DEPENDENCYS9$originalsA1C0M5Sa$entityTypeBa$EntityTypeS4$EDGESb$historyTypeS8$CREATIONSb$operationIdB2$IdA1S11.6$Ft9T5rP3KjNu5VU_0wireOpS9$queryTypeSd$SKETCH_ENTITYSe$sketchEntityIdSc$XTHINQlw92jUR4R5R6R7S7$isStartFR8CbA1S11.9$Fv4ednQa7DHAyTU_0opExtrudeRbS8$CAP_EDGE",id);
+                        skConstraint(sketch, "hBGR35414FbA.centerSnap0.positionSnap0", { "constraintType" : ConstraintType.MIDPOINT, "index" : "1", "name" : "", "localEntity1" : "hBGR35414FbA.centerSnap0", "externalEntity2" : qUnion([qCoEdge(eOumwfmOAUfCQv_query, BhXUTgFPmMjmWu_query)]) });
+                    }
+                    {
+                        skConstraint(sketch, "hBGR35414FbA.centerSnap1", { "constraintType" : ConstraintType.VERTICAL, "index" : "1", "name" : "", "localFirst" : "hBGR35414FbA.center", "localSecond" : "hBGR35414FbA.centerSnap0" });
+                    }
+                    skSetInitialGuess(sketch, initialGuessFEweL7tDsr0M6iY_1);
+                    skSolve(sketch);
+                }
+            };
+        try(features.FEweL7tDsr0M6iY_1(id));
+        features.FQoP4DFvYtpz3uM_1 = function(id)
+            {
+                annotation { 'unused' : true }
+                var features = features;
+                if (true)
+                {
+                    const initialGuessFQoP4DFvYtpz3uM_1 = { "4PqbDEapbNHu.bottom" : [-0.008403812133165878, -0.003245161389182287, 1.0, 0.0, -0.008403812133165878, 0.008403812133165878], "4PqbDEapbNHu.top" : [-0.008403812133165878, 0.003403425264706113, 1.0, 0.0, -0.008403812133165878, 0.008403812133165878], "4PqbDEapbNHu.left" : [-0.016807624266331755, 7.913193776191291E-5, 0.0, 1.0, -0.0033242933269442, 0.0033242933269442], "4PqbDEapbNHu.right" : [0.0, 7.913193776191291E-5, 0.0, 1.0, -0.0033242933269442, 0.0033242933269442] };
+                    {
+                    }
+                    var dLmbRUQEpRzfxY_query;
+                    dLmbRUQEpRzfxY_query=qCompressed(1.0,"%B5$QueryM6S12$disambiguationDataA1M2S12$disambiguationTypeS13$ORIGINAL_DEPENDENCYS9$originalsA3C0M5Sa$entityTypeBa$EntityTypeS4$EDGESb$historyTypeS8$CREATIONSb$operationIdB2$IdA1S11.6$Ft9T5rP3KjNu5VU_0wireOpS9$queryTypeSd$SKETCH_ENTITYSe$sketchEntityIdSc$aiMErioZl7K3C0M5R4R5R6R7R8RaRbRcRdSc$XTHINQlw92jUC0M5R4R5R6R7R8RaRbRcRdSc$F8Z1h1OWXcvGR4C6S4$FACER6R7S7$isStartFR8CbA1S11.9$Fv4ednQa7DHAyTU_0opExtrudeRbS8$CAP_FACE",id);
+                    annotation { "Feature Name" : "Sketch 3" }
+                    var sketch = newSketch(context, id + "FQoP4DFvYtpz3uM_1", { "sketchPlane" : qUnion([dLmbRUQEpRzfxY_query]), "disableImprinting" : false });
+                    skLineSegment(sketch, "4PqbDEapbNHu.bottom", { "construction" : false, "index" : "1" });
+                    skLineSegment(sketch, "4PqbDEapbNHu.top", { "construction" : false, "index" : "2" });
+                    skLineSegment(sketch, "4PqbDEapbNHu.left", { "construction" : false, "index" : "3" });
+                    skLineSegment(sketch, "4PqbDEapbNHu.right", { "construction" : false, "index" : "4" });
+                    {
+                        var HTerXnwwMtgsRI_query;
+                        HTerXnwwMtgsRI_query=qCompressed(1.0,"%B5$QueryM4Sa$entityTypeBa$EntityTypeS6$VERTEXSb$historyTypeS8$CREATIONSb$operationIdB2$IdA1S6.7$OriginpointOpS9$queryTypeS5$DUMMY",id);
+                        skConstraint(sketch, "4PqbDEapbNHu.oppositeSnap0", { "constraintType" : ConstraintType.VERTICAL, "index" : "1", "name" : "", "localFirst" : "4PqbDEapbNHu.top.end", "externalSecond" : qUnion([HTerXnwwMtgsRI_query]) });
+                    }
+                    {
+                        skConstraint(sketch, "4PqbDEapbNHu.perpendicular", { "constraintType" : ConstraintType.PERPENDICULAR, "index" : "1", "name" : "", "localFirst" : "4PqbDEapbNHu.top", "localSecond" : "4PqbDEapbNHu.left" });
+                    }
+                    {
+                        skConstraint(sketch, "4PqbDEapbNHu.parallel.1", { "constraintType" : ConstraintType.PARALLEL, "index" : "1", "name" : "", "localFirst" : "4PqbDEapbNHu.bottom", "localSecond" : "4PqbDEapbNHu.top" });
+                    }
+                    {
+                        skConstraint(sketch, "4PqbDEapbNHu.parallel.2", { "constraintType" : ConstraintType.PARALLEL, "index" : "2", "name" : "", "localFirst" : "4PqbDEapbNHu.left", "localSecond" : "4PqbDEapbNHu.right" });
+                    }
+                    {
+                        skConstraint(sketch, "4PqbDEapbNHu.horizontal", { "constraintType" : ConstraintType.HORIZONTAL, "index" : "1", "name" : "", "localFirst" : "4PqbDEapbNHu.top" });
+                    }
+                    {
+                        skConstraint(sketch, "4PqbDEapbNHu.corner0", { "constraintType" : ConstraintType.COINCIDENT, "index" : "1", "name" : "", "localFirst" : "4PqbDEapbNHu.bottom.start", "localSecond" : "4PqbDEapbNHu.left.start" });
+                    }
+                    {
+                        skConstraint(sketch, "4PqbDEapbNHu.corner1", { "constraintType" : ConstraintType.COINCIDENT, "index" : "2", "name" : "", "localFirst" : "4PqbDEapbNHu.bottom.end", "localSecond" : "4PqbDEapbNHu.right.start" });
+                    }
+                    {
+                        skConstraint(sketch, "4PqbDEapbNHu.corner2", { "constraintType" : ConstraintType.COINCIDENT, "index" : "3", "name" : "", "localFirst" : "4PqbDEapbNHu.top.start", "localSecond" : "4PqbDEapbNHu.left.end" });
+                    }
+                    {
+                        skConstraint(sketch, "4PqbDEapbNHu.corner3", { "constraintType" : ConstraintType.COINCIDENT, "index" : "4", "name" : "", "localFirst" : "4PqbDEapbNHu.top.end", "localSecond" : "4PqbDEapbNHu.right.end" });
+                    }
+                    skSetInitialGuess(sketch, initialGuessFQoP4DFvYtpz3uM_1);
+                    skSolve(sketch);
+                }
+            };
+        try(features.FQoP4DFvYtpz3uM_1(id));
+        return context;
+    }, inch, {});

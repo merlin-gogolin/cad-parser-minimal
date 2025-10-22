@@ -1,0 +1,133 @@
+{
+    "feature 1": {
+        "name": "Sketch 1",
+        "type": "newSketch",
+        "id": "FuEZNgsO25EREm9_0",
+        "primitives": {
+            "gmIV3dBFUhjq": {
+                "type": "skCircle",
+                "points": [
+                    0.0,
+                    0.021696629195593398,
+                    1.0,
+                    0.0,
+                    0.021696629195593398,
+                    -1.0
+                ],
+                "geometry": {
+                    "center": [
+                        0.0,
+                        0.021696629195593398
+                    ],
+                    "radius": 0.021696629195593398
+                },
+                "construction": false
+            }
+        },
+        "sketch_plane": "Front"
+    },
+    "feature 2": {
+        "name": "Extrude 1",
+        "type": "extrude",
+        "id": "FYcIg1M72z463QM_0",
+        "parameters": {
+            "domain": "OperationDomain.MODEL",
+            "bodyType": "ExtendedToolBodyType.SOLID",
+            "operationType": "NewBodyOperationType.NEW",
+            "surfaceOperationType": "NewSurfaceOperationType.NEW",
+            "flatOperationType": "FlatOperationType.REMOVE",
+            "entities": [
+                [
+                    [
+                        "FuEZNgsO25EREm9_0",
+                        "newSketch"
+                    ],
+                    [
+                        "gmIV3dBFUhjq",
+                        "skCircle"
+                    ]
+                ]
+            ],
+            "surfaceEntities": [],
+            "wallShape": [],
+            "midplane": "false",
+            "thickness1": {
+                "default": "try(0.25 * inch)",
+                "value": "0.25",
+                "unit": "in"
+            },
+            "flipWall": "false",
+            "thickness2": {
+                "default": "try(0 * inch)",
+                "value": "0",
+                "unit": "in"
+            },
+            "thickness": {
+                "default": "try(0.25 * inch)",
+                "value": "0.25",
+                "unit": "in"
+            },
+            "endBound": "BoundingType.BLIND",
+            "oppositeDirection": "true",
+            "depth": "4.039999999999999 * inch",
+            "endBoundEntityFace": [],
+            "endBoundEntityBody": [],
+            "endBoundEntityVertex": [],
+            "hasOffset": "false",
+            "offsetDistance": {
+                "default": "try(1 * inch)",
+                "value": "1",
+                "unit": "in"
+            },
+            "offsetOppositeDirection": "false",
+            "hasExtrudeDirection": "false",
+            "extrudeDirection": [],
+            "startOffset": "false",
+            "startOffsetBound": "StartOffsetType.BLIND",
+            "startOffsetDistance": {
+                "default": "try(1 * inch)",
+                "value": "1",
+                "unit": "in"
+            },
+            "startOffsetOppositeDirection": "false",
+            "startOffsetEntity": [],
+            "symmetric": "false",
+            "hasDraft": "false",
+            "draftAngle": {
+                "default": "try(3 * degree)",
+                "value": "3",
+                "unit": "deg"
+            },
+            "draftPullDirection": "false",
+            "hasSecondDirection": "false",
+            "secondDirectionBound": "BoundingType.BLIND",
+            "secondDirectionOppositeDirection": "true",
+            "secondDirectionDepth": {
+                "default": "try(1 * inch)",
+                "value": "1",
+                "unit": "in"
+            },
+            "secondDirectionBoundEntityFace": [],
+            "secondDirectionBoundEntityBody": [],
+            "secondDirectionBoundEntityVertex": [],
+            "hasSecondDirectionOffset": "false",
+            "secondDirectionOffsetDistance": {
+                "default": "try(1 * inch)",
+                "value": "1",
+                "unit": "in"
+            },
+            "secondDirectionOffsetOppositeDirection": "false",
+            "hasSecondDirectionDraft": "false",
+            "secondDirectionDraftAngle": {
+                "default": "try(3 * degree)",
+                "value": "3",
+                "unit": "deg"
+            },
+            "secondDirectionDraftPullDirection": "false",
+            "defaultScope": "false",
+            "booleanScope": [],
+            "defaultSurfaceScope": "true",
+            "booleanSurfaceScope": []
+        }
+    }
+}

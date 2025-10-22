@@ -1,0 +1,932 @@
+{
+    "feature 1": {
+        "name": "Sketch 1",
+        "type": "newSketch",
+        "id": "F5IXnz7CNTKDS6Z_0",
+        "primitives": {
+            "10602ec5-634c-4314-8b1b-758e1074870f": {
+                "type": "skLineSegment",
+                "points": [
+                    0.0,
+                    -0.0005961752092586093,
+                    0.0,
+                    -1.0,
+                    -0.031076175209258608,
+                    0.029883824790741392
+                ],
+                "geometry": {
+                    "start": [
+                        0.0,
+                        0.03048
+                    ],
+                    "end": [
+                        0.0,
+                        -0.03048
+                    ]
+                },
+                "construction": false
+            },
+            "a587b5af-4dcd-4b98-809c-719739953bff": {
+                "type": "skLineSegment",
+                "points": [
+                    0.014224000000000006,
+                    -0.03048,
+                    1.0,
+                    0.0,
+                    -0.014224000000000002,
+                    0.014224000000000002
+                ],
+                "geometry": {
+                    "start": [
+                        3.469446951953614e-18,
+                        -0.03048
+                    ],
+                    "end": [
+                        0.028448000000000008,
+                        -0.03048
+                    ]
+                },
+                "construction": false
+            },
+            "13cfafa0-9ad0-4a6b-900a-ca251052970d": {
+                "type": "skLineSegment",
+                "points": [
+                    0.028448000000000008,
+                    -0.0021638103320230965,
+                    0.0,
+                    1.0,
+                    -0.028316189667976905,
+                    0.0326438103320231
+                ],
+                "geometry": {
+                    "start": [
+                        0.028448000000000008,
+                        -0.03048
+                    ],
+                    "end": [
+                        0.028448000000000008,
+                        0.030480000000000004
+                    ]
+                },
+                "construction": false
+            },
+            "f10f01ee-dfa4-47d0-bc2d-cf75a0222d21": {
+                "type": "skLineSegment",
+                "points": [
+                    0.014224000000000002,
+                    0.03048,
+                    -1.0,
+                    -1.2246467991473532e-16,
+                    -0.014224000000000006,
+                    0.014223999999999999
+                ],
+                "geometry": {
+                    "start": [
+                        0.028448000000000008,
+                        0.030480000000000004
+                    ],
+                    "end": [
+                        3.469446951953614e-18,
+                        0.030479999999999997
+                    ]
+                },
+                "construction": false
+            }
+        },
+        "sketch_plane": "Top"
+    },
+    "feature 2": {
+        "name": "Extrude 1",
+        "type": "extrude",
+        "id": "Fx4d3CIQJ2jntGQ_0",
+        "parameters": {
+            "bodyType": "ToolBodyType.SOLID",
+            "operationType": "NewBodyOperationType.NEW",
+            "entities": [
+                [
+                    [
+                        "F5IXnz7CNTKDS6Z_0",
+                        "newSketch"
+                    ],
+                    [
+                        "10602ec5-634c-4314-8b1b-758e1074870f",
+                        "skLineSegment"
+                    ]
+                ]
+            ],
+            "surfaceEntities": [],
+            "endBound": "BoundingType.BLIND",
+            "oppositeDirection": "false",
+            "endBoundEntity": [],
+            "depth": {
+                "default": "try(1.9 * inch)",
+                "value": "1.9",
+                "unit": "in"
+            },
+            "defaultScope": "false",
+            "booleanScope": [],
+            "asVersion": "FeatureScriptVersionNumber.V608_MERGE_FROM_TOOLS"
+        }
+    },
+    "feature 3": {
+        "name": "Sketch 2",
+        "type": "newSketch",
+        "id": "FQzPribPoEzG1yR_1",
+        "primitives": {
+            "68e10429-8013-4655-8f9a-49fe5f2a3527": {
+                "type": "skLineSegment",
+                "points": [
+                    0.08278128932664061,
+                    0.0,
+                    1.0,
+                    0.0,
+                    -0.0543332893266406,
+                    0.0365987106733594
+                ],
+                "geometry": {
+                    "start": [
+                        0.028448000000000008,
+                        0.0
+                    ],
+                    "end": [
+                        0.11938000000000001,
+                        0.0
+                    ]
+                },
+                "construction": true
+            },
+            "5ade33aa-fcba-4be8-a93f-ece388e17877": {
+                "type": "skLineSegment",
+                "points": [
+                    0.11061121739432925,
+                    -0.005062658997849322,
+                    -0.8660254037844388,
+                    -0.4999999999999999,
+                    -0.010125317995698652,
+                    0.025434682004301344
+                ],
+                "geometry": {
+                    "start": [
+                        0.11938000000000001,
+                        3.469446951953614e-18
+                    ],
+                    "end": [
+                        0.08858413664142538,
+                        -0.01777999999999999
+                    ]
+                },
+                "construction": false
+            },
+            "2db76a21-b9fe-4abf-baeb-f2fde0a08295": {
+                "type": "skLineSegment",
+                "points": [
+                    0.07444371307427025,
+                    -0.01777999999999999,
+                    -1.0,
+                    -1.2246467991473532e-16,
+                    -0.014140423567155128,
+                    0.04599571307427024
+                ],
+                "geometry": {
+                    "start": [
+                        0.08858413664142538,
+                        -0.01777999999999999
+                    ],
+                    "end": [
+                        0.028448000000000008,
+                        -0.017779999999999997
+                    ]
+                },
+                "construction": false
+            },
+            "9315f217-038c-45a1-aacc-c16821238a76": {
+                "type": "skLineSegment",
+                "points": [
+                    0.028448000000000008,
+                    -0.006222898073805226,
+                    1.2246467991473532e-16,
+                    -1.0,
+                    -0.006222898073805225,
+                    0.011557101926194767
+                ],
+                "geometry": {
+                    "start": [
+                        0.028448000000000008,
+                        -8.673617379884035e-19
+                    ],
+                    "end": [
+                        0.028448000000000008,
+                        -0.017779999999999994
+                    ]
+                },
+                "construction": false
+            },
+            "ecb5b01b-acc6-4dc4-bdbb-7a7322e0ab4f.0.MirrorCS": {
+                "type": "skLineSegment",
+                "points": [
+                    0.028448000000000008,
+                    0.006222898073805226,
+                    1.2246467991473532e-16,
+                    1.0,
+                    -0.006222898073805225,
+                    0.011557101926194767
+                ],
+                "geometry": {
+                    "start": [
+                        0.028448000000000008,
+                        8.673617379884035e-19
+                    ],
+                    "end": [
+                        0.028448000000000008,
+                        0.017779999999999994
+                    ]
+                },
+                "construction": false
+            },
+            "ecb5b01b-acc6-4dc4-bdbb-7a7322e0ab4f.1.MirrorCS": {
+                "type": "skLineSegment",
+                "points": [
+                    0.11061121739432925,
+                    0.005062658997849322,
+                    -0.8660254037844388,
+                    0.4999999999999999,
+                    -0.01012531799569865,
+                    0.025434682004301344
+                ],
+                "geometry": {
+                    "start": [
+                        0.11938000000000001,
+                        -2.6020852139652106e-18
+                    ],
+                    "end": [
+                        0.08858413664142538,
+                        0.01777999999999999
+                    ]
+                },
+                "construction": false
+            },
+            "ecb5b01b-acc6-4dc4-bdbb-7a7322e0ab4f.2.MirrorCS": {
+                "type": "skLineSegment",
+                "points": [
+                    0.07444371307427025,
+                    0.01777999999999999,
+                    -1.0,
+                    1.2246467991473532e-16,
+                    -0.014140423567155128,
+                    0.04599571307427024
+                ],
+                "geometry": {
+                    "start": [
+                        0.08858413664142538,
+                        0.01777999999999999
+                    ],
+                    "end": [
+                        0.028448000000000008,
+                        0.017779999999999997
+                    ]
+                },
+                "construction": false
+            }
+        },
+        "sketch_plane": "Top"
+    },
+    "feature 4": {
+        "name": "Extrude 2",
+        "type": "extrude",
+        "id": "FuDpgo25nhSFNqX_1",
+        "parameters": {
+            "bodyType": "ToolBodyType.SOLID",
+            "operationType": "NewBodyOperationType.ADD",
+            "entities": [
+                [
+                    [
+                        "FQzPribPoEzG1yR_1",
+                        "newSketch"
+                    ]
+                ]
+            ],
+            "surfaceEntities": [],
+            "endBound": "BoundingType.BLIND",
+            "oppositeDirection": "false",
+            "endBoundEntity": [],
+            "depth": {
+                "default": "try(1.12 * inch)",
+                "value": "1.12",
+                "unit": "in"
+            },
+            "defaultScope": "true",
+            "booleanScope": [
+                [
+                    [
+                        "F5IXnz7CNTKDS6Z_0",
+                        "newSketch"
+                    ],
+                    [
+                        "Fx4d3CIQJ2jntGQ_0",
+                        "extrude"
+                    ],
+                    [
+                        "10602ec5-634c-4314-8b1b-758e1074870f",
+                        "skLineSegment"
+                    ],
+                    [
+                        "a587b5af-4dcd-4b98-809c-719739953bff",
+                        "skLineSegment"
+                    ],
+                    [
+                        "13cfafa0-9ad0-4a6b-900a-ca251052970d",
+                        "skLineSegment"
+                    ],
+                    [
+                        "f10f01ee-dfa4-47d0-bc2d-cf75a0222d21",
+                        "skLineSegment"
+                    ]
+                ]
+            ],
+            "asVersion": "FeatureScriptVersionNumber.V608_MERGE_FROM_TOOLS"
+        }
+    },
+    "feature 5": {
+        "name": "Sketch 3",
+        "type": "newSketch",
+        "id": "FFbpfDZQ7MTdllb_1",
+        "primitives": {
+            "87e2f81e-3eef-4d56-b12b-ec82ac5e766b.bottom": {
+                "type": "skLineSegment",
+                "points": [
+                    0.10876985450993927,
+                    0.028448000000000005,
+                    -1.0,
+                    -1.2246467991473532e-16,
+                    -0.010610145490060743,
+                    0.008693854509939258
+                ],
+                "geometry": {
+                    "start": [
+                        0.11938000000000001,
+                        0.028448000000000005
+                    ],
+                    "end": [
+                        0.10007600000000001,
+                        0.028448000000000005
+                    ]
+                },
+                "construction": false
+            },
+            "87e2f81e-3eef-4d56-b12b-ec82ac5e766b.top": {
+                "type": "skLineSegment",
+                "points": [
+                    0.10898694656742876,
+                    0.017272000000000003,
+                    -1.0,
+                    -1.2246467991473532e-16,
+                    -0.010393053432571256,
+                    0.008910946567428746
+                ],
+                "geometry": {
+                    "start": [
+                        0.11938000000000001,
+                        0.017272000000000003
+                    ],
+                    "end": [
+                        0.10007600000000001,
+                        0.017272000000000003
+                    ]
+                },
+                "construction": false
+            },
+            "87e2f81e-3eef-4d56-b12b-ec82ac5e766b.left": {
+                "type": "skLineSegment",
+                "points": [
+                    0.11938000000000001,
+                    0.0219921126497713,
+                    3.0616169978683826e-16,
+                    -1.0,
+                    -0.006455887350228704,
+                    0.004720112649771298
+                ],
+                "geometry": {
+                    "start": [
+                        0.11938000000000001,
+                        0.028448000000000005
+                    ],
+                    "end": [
+                        0.11938000000000001,
+                        0.017272000000000003
+                    ]
+                },
+                "construction": false
+            },
+            "87e2f81e-3eef-4d56-b12b-ec82ac5e766b.right": {
+                "type": "skLineSegment",
+                "points": [
+                    0.10007600000000001,
+                    0.021992112649771293,
+                    3.0616169978683826e-16,
+                    -1.0,
+                    -0.006455887350228708,
+                    0.004720112649771291
+                ],
+                "geometry": {
+                    "start": [
+                        0.10007600000000001,
+                        0.028448
+                    ],
+                    "end": [
+                        0.10007600000000001,
+                        0.017272000000000003
+                    ]
+                },
+                "construction": false
+            },
+            "2c4648e8-4618-42f0-9056-9eecf5c73e05": {
+                "type": "skCircle",
+                "points": [
+                    0.0635,
+                    0.014224000000000014,
+                    1.0,
+                    1.8369701987210297e-16,
+                    0.0063500000000000015,
+                    -1.0
+                ],
+                "geometry": {
+                    "center": [
+                        0.0635,
+                        0.014224000000000014
+                    ],
+                    "radius": 0.0063500000000000015
+                },
+                "construction": false
+            }
+        },
+        "sketch_plane": "Front"
+    },
+    "feature 6": {
+        "name": "Extrude 3",
+        "type": "extrude",
+        "id": "F28HNztp3KcNuMb_1",
+        "parameters": {
+            "bodyType": "ToolBodyType.SOLID",
+            "operationType": "NewBodyOperationType.REMOVE",
+            "entities": [
+                [
+                    [
+                        "FFbpfDZQ7MTdllb_1",
+                        "newSketch"
+                    ],
+                    [
+                        "87e2f81e-3eef-4d56-b12b-ec82ac5e766b.bottom",
+                        "skLineSegment"
+                    ],
+                    [
+                        "2c4648e8-4618-42f0-9056-9eecf5c73e05",
+                        "skCircle"
+                    ]
+                ]
+            ],
+            "surfaceEntities": [],
+            "endBound": "BoundingType.THROUGH_ALL",
+            "oppositeDirection": "false",
+            "endBoundEntity": [],
+            "depth": {
+                "default": "try(1 * inch)",
+                "value": "1",
+                "unit": "in"
+            },
+            "defaultScope": "false",
+            "booleanScope": [
+                [
+                    [
+                        "F5IXnz7CNTKDS6Z_0",
+                        "newSketch"
+                    ],
+                    [
+                        "Fx4d3CIQJ2jntGQ_0",
+                        "extrude"
+                    ],
+                    [
+                        "10602ec5-634c-4314-8b1b-758e1074870f",
+                        "skLineSegment"
+                    ],
+                    [
+                        "a587b5af-4dcd-4b98-809c-719739953bff",
+                        "skLineSegment"
+                    ],
+                    [
+                        "13cfafa0-9ad0-4a6b-900a-ca251052970d",
+                        "skLineSegment"
+                    ],
+                    [
+                        "f10f01ee-dfa4-47d0-bc2d-cf75a0222d21",
+                        "skLineSegment"
+                    ]
+                ]
+            ],
+            "asVersion": "FeatureScriptVersionNumber.V608_MERGE_FROM_TOOLS"
+        }
+    },
+    "feature 7": {
+        "name": "Extrude 4",
+        "type": "extrude",
+        "id": "FeB7f52q19B7DDW_1",
+        "parameters": {
+            "bodyType": "ToolBodyType.SOLID",
+            "operationType": "NewBodyOperationType.REMOVE",
+            "entities": [
+                [
+                    [
+                        "FFbpfDZQ7MTdllb_1",
+                        "newSketch"
+                    ],
+                    [
+                        "F28HNztp3KcNuMb_1",
+                        "extrude"
+                    ],
+                    [
+                        "2c4648e8-4618-42f0-9056-9eecf5c73e05",
+                        "skCircle"
+                    ]
+                ],
+                [
+                    [
+                        "FFbpfDZQ7MTdllb_1",
+                        "newSketch"
+                    ],
+                    [
+                        "F28HNztp3KcNuMb_1",
+                        "extrude"
+                    ],
+                    [
+                        "87e2f81e-3eef-4d56-b12b-ec82ac5e766b.bottom",
+                        "skLineSegment"
+                    ],
+                    [
+                        "87e2f81e-3eef-4d56-b12b-ec82ac5e766b.top",
+                        "skLineSegment"
+                    ],
+                    [
+                        "87e2f81e-3eef-4d56-b12b-ec82ac5e766b.left",
+                        "skLineSegment"
+                    ],
+                    [
+                        "87e2f81e-3eef-4d56-b12b-ec82ac5e766b.right",
+                        "skLineSegment"
+                    ]
+                ]
+            ],
+            "surfaceEntities": [],
+            "endBound": "BoundingType.THROUGH_ALL",
+            "oppositeDirection": "true",
+            "endBoundEntity": [],
+            "depth": "1.0 * inch",
+            "defaultScope": "false",
+            "booleanScope": [
+                [
+                    [
+                        "F5IXnz7CNTKDS6Z_0",
+                        "newSketch"
+                    ],
+                    [
+                        "Fx4d3CIQJ2jntGQ_0",
+                        "extrude"
+                    ],
+                    [
+                        "10602ec5-634c-4314-8b1b-758e1074870f",
+                        "skLineSegment"
+                    ],
+                    [
+                        "a587b5af-4dcd-4b98-809c-719739953bff",
+                        "skLineSegment"
+                    ],
+                    [
+                        "13cfafa0-9ad0-4a6b-900a-ca251052970d",
+                        "skLineSegment"
+                    ],
+                    [
+                        "f10f01ee-dfa4-47d0-bc2d-cf75a0222d21",
+                        "skLineSegment"
+                    ]
+                ]
+            ],
+            "asVersion": "FeatureScriptVersionNumber.V608_MERGE_FROM_TOOLS"
+        }
+    },
+    "feature 8": {
+        "name": "Sketch 4",
+        "type": "newSketch",
+        "id": "FEfyQwbucMXfO1m_1",
+        "primitives": {
+            "35ab4dda-5bf8-46b2-a384-0a35c25bd0be": {
+                "type": "skLineSegment",
+                "points": [
+                    0.0,
+                    0.0007335584564831008,
+                    0.0,
+                    -0.9999999999999999,
+                    -0.017046441543516897,
+                    0.018513558456483097
+                ],
+                "geometry": {
+                    "start": [
+                        0.0,
+                        0.017779999999999994
+                    ],
+                    "end": [
+                        0.0,
+                        -0.017779999999999994
+                    ]
+                },
+                "construction": false
+            },
+            "a95372c8-1f52-4af4-b182-8ead9361a117": {
+                "type": "skLineSegment",
+                "points": [
+                    0.005080000000000001,
+                    -0.01778,
+                    1.0,
+                    0.0,
+                    -0.0050799999999999994,
+                    0.005080000000000003
+                ],
+                "geometry": {
+                    "start": [
+                        1.734723475976807e-18,
+                        -0.01778
+                    ],
+                    "end": [
+                        0.010160000000000004,
+                        -0.01778
+                    ]
+                },
+                "construction": false
+            },
+            "73da63e8-e819-4945-92c3-39987b19186b": {
+                "type": "skLineSegment",
+                "points": [
+                    0.010160000000000004,
+                    -0.0020393449333020964,
+                    0.0,
+                    1.0,
+                    -0.015740655066697903,
+                    0.019819344933302098
+                ],
+                "geometry": {
+                    "start": [
+                        0.010160000000000004,
+                        -0.01778
+                    ],
+                    "end": [
+                        0.010160000000000004,
+                        0.01778
+                    ]
+                },
+                "construction": false
+            },
+            "93bbd1ee-9dd8-4b67-ae4e-4bc92cd222a5": {
+                "type": "skLineSegment",
+                "points": [
+                    0.004709919638080086,
+                    0.01778,
+                    -1.0,
+                    -1.2246467991473532e-16,
+                    -0.005450080361919916,
+                    0.004709919638080084
+                ],
+                "geometry": {
+                    "start": [
+                        0.010160000000000002,
+                        0.01778
+                    ],
+                    "end": [
+                        1.734723475976807e-18,
+                        0.01778
+                    ]
+                },
+                "construction": false
+            }
+        },
+        "sketch_plane": "Top"
+    },
+    "feature 9": {
+        "name": "Extrude 5",
+        "type": "extrude",
+        "id": "Fr8BRZwKAfzM8zr_1",
+        "parameters": {
+            "bodyType": "ToolBodyType.SOLID",
+            "operationType": "NewBodyOperationType.REMOVE",
+            "entities": [
+                [
+                    [
+                        "FEfyQwbucMXfO1m_1",
+                        "newSketch"
+                    ],
+                    [
+                        "35ab4dda-5bf8-46b2-a384-0a35c25bd0be",
+                        "skLineSegment"
+                    ]
+                ]
+            ],
+            "surfaceEntities": [],
+            "endBound": "BoundingType.THROUGH_ALL",
+            "oppositeDirection": "false",
+            "endBoundEntity": [],
+            "depth": "1.0 * inch",
+            "defaultScope": "false",
+            "booleanScope": [
+                [
+                    [
+                        "F5IXnz7CNTKDS6Z_0",
+                        "newSketch"
+                    ],
+                    [
+                        "Fx4d3CIQJ2jntGQ_0",
+                        "extrude"
+                    ],
+                    [
+                        "10602ec5-634c-4314-8b1b-758e1074870f",
+                        "skLineSegment"
+                    ],
+                    [
+                        "a587b5af-4dcd-4b98-809c-719739953bff",
+                        "skLineSegment"
+                    ],
+                    [
+                        "13cfafa0-9ad0-4a6b-900a-ca251052970d",
+                        "skLineSegment"
+                    ],
+                    [
+                        "f10f01ee-dfa4-47d0-bc2d-cf75a0222d21",
+                        "skLineSegment"
+                    ]
+                ]
+            ],
+            "asVersion": "FeatureScriptVersionNumber.V608_MERGE_FROM_TOOLS"
+        }
+    },
+    "feature 10": {
+        "name": "Sketch 5",
+        "type": "newSketch",
+        "id": "FaaDECRQvYMQ7QU_1",
+        "primitives": {
+            "99e105f3-2870-4b8d-8fd7-e825d0d4a6ae.rect.bottom": {
+                "type": "skLineSegment",
+                "points": [
+                    0.0,
+                    0.048260000000000004,
+                    -1.0,
+                    -1.2246467991473532e-16,
+                    -0.012699999999999998,
+                    0.012700000000000005
+                ],
+                "geometry": {
+                    "start": [
+                        0.012699999999999998,
+                        0.048260000000000004
+                    ],
+                    "end": [
+                        -0.012700000000000005,
+                        0.048260000000000004
+                    ]
+                },
+                "construction": false
+            },
+            "99e105f3-2870-4b8d-8fd7-e825d0d4a6ae.rect.top": {
+                "type": "skLineSegment",
+                "points": [
+                    -0.002306643566489212,
+                    0.0381,
+                    -1.0,
+                    -1.2246467991473532e-16,
+                    -0.015006643566489215,
+                    0.01039335643351079
+                ],
+                "geometry": {
+                    "start": [
+                        0.012700000000000003,
+                        0.0381
+                    ],
+                    "end": [
+                        -0.012700000000000001,
+                        0.0381
+                    ]
+                },
+                "construction": false
+            },
+            "99e105f3-2870-4b8d-8fd7-e825d0d4a6ae.rect.left": {
+                "type": "skLineSegment",
+                "points": [
+                    0.0127,
+                    0.04317102620959283,
+                    3.0616169978683826e-16,
+                    -1.0,
+                    -0.005088973790407174,
+                    0.0050710262095928285
+                ],
+                "geometry": {
+                    "start": [
+                        0.012699999999999998,
+                        0.048260000000000004
+                    ],
+                    "end": [
+                        0.012700000000000001,
+                        0.0381
+                    ]
+                },
+                "construction": false
+            },
+            "99e105f3-2870-4b8d-8fd7-e825d0d4a6ae.rect.right": {
+                "type": "skLineSegment",
+                "points": [
+                    -0.012700000000000003,
+                    0.04318897379040718,
+                    3.0616169978683826e-16,
+                    -1.0,
+                    -0.005071026209592822,
+                    0.005088973790407181
+                ],
+                "geometry": {
+                    "start": [
+                        -0.012700000000000005,
+                        0.048260000000000004
+                    ],
+                    "end": [
+                        -0.012700000000000001,
+                        0.0381
+                    ]
+                },
+                "construction": false
+            },
+            "99e105f3-2870-4b8d-8fd7-e825d0d4a6ae.rect.middle": {
+                "type": "skPoint",
+                "points": [
+                    0.0,
+                    0.04318
+                ],
+                "geometry": {
+                    "point": [
+                        0.0,
+                        0.04318
+                    ]
+                },
+                "construction": false
+            }
+        },
+        "sketch_plane": "Right"
+    },
+    "feature 11": {
+        "name": "Extrude 6",
+        "type": "extrude",
+        "id": "Fzuvwz2ioyQRiPP_1",
+        "parameters": {
+            "bodyType": "ToolBodyType.SOLID",
+            "operationType": "NewBodyOperationType.REMOVE",
+            "entities": [
+                [
+                    [
+                        "FaaDECRQvYMQ7QU_1",
+                        "newSketch"
+                    ],
+                    [
+                        "99e105f3-2870-4b8d-8fd7-e825d0d4a6ae.rect.bottom",
+                        "skLineSegment"
+                    ]
+                ]
+            ],
+            "surfaceEntities": [],
+            "endBound": "BoundingType.THROUGH_ALL",
+            "oppositeDirection": "false",
+            "endBoundEntity": [],
+            "depth": "1.0 * inch",
+            "defaultScope": "false",
+            "booleanScope": [
+                [
+                    [
+                        "F5IXnz7CNTKDS6Z_0",
+                        "newSketch"
+                    ],
+                    [
+                        "Fx4d3CIQJ2jntGQ_0",
+                        "extrude"
+                    ],
+                    [
+                        "10602ec5-634c-4314-8b1b-758e1074870f",
+                        "skLineSegment"
+                    ],
+                    [
+                        "a587b5af-4dcd-4b98-809c-719739953bff",
+                        "skLineSegment"
+                    ],
+                    [
+                        "13cfafa0-9ad0-4a6b-900a-ca251052970d",
+                        "skLineSegment"
+                    ],
+                    [
+                        "f10f01ee-dfa4-47d0-bc2d-cf75a0222d21",
+                        "skLineSegment"
+                    ]
+                ]
+            ],
+            "asVersion": "FeatureScriptVersionNumber.V608_MERGE_FROM_TOOLS"
+        }
+    }
+}

@@ -1,0 +1,87 @@
+FeatureScript 2770;
+import(path : "onshape/std/geometry.fs", version : "2770.0");
+
+annotation { "Default Units" : ["cubicInch", "degree", "degreePerSecond", "footPoundForce", "inch", "inchPerSecondSquared", "inchPound", "pound", "poundForce", "poundPerCubicInch", "poundPerSquareInch", "second", "squareInch"] }
+export function main()
+{
+    return build({});
+}
+
+export function build()
+{
+    return buildPrivate({});
+}
+
+export function build(configuration is map)
+{
+    return buildPrivate(configuration);
+}
+
+const buildPrivate = definePartStudio(function(context is Context, configuration is map, lookup is function)
+    precondition
+    {
+    }
+    {
+        const id is Id = newId();
+        annotation { 'unused' : true }
+        var features = {};
+        features.Fn0frzU0pqRJJtL_0 = function(id)
+            {
+                annotation { 'unused' : true }
+                var features = features;
+                if (true)
+                {
+                    const initialGuessFn0frzU0pqRJJtL_0 = { "N0In4OvMsADF" : [0.0, 0.027355916416025194, 0.0, 1.0, -0.027355916416025194, 0.027355916416025194], "7sWKAgpUFfGb" : [0.010975883928640618, 0.027355916416025194, 0.37237074428002354, -0.9280840634362499, -0.02947568813404613, 0.02947568813404613], "HvZjgOkuPsw4" : [0.010975883928640618, 1.734723475976807E-18, -1.0, -1.580486352857829E-16, -0.010975883928640618, 0.010975883928640618] };
+                    {
+                    }
+                    var mutwpjcHEoUMZb_query;
+                    mutwpjcHEoUMZb_query=qCompressed(1.0,"%B5$QueryM4Sa$entityTypeBa$EntityTypeS4$FACESb$historyTypeS8$CREATIONSb$operationIdB2$IdA1S5.7$FrontplaneOpS9$queryTypeS5$DUMMY",id);
+                    annotation { "Feature Name" : "Sketch 1" }
+                    var sketch = newSketch(context, id + "Fn0frzU0pqRJJtL_0", { "sketchPlane" : qUnion([mutwpjcHEoUMZb_query]), "disableImprinting" : false });
+                    skLineSegment(sketch, "N0In4OvMsADF", { "construction" : false, "index" : "1" });
+                    skLineSegment(sketch, "7sWKAgpUFfGb", { "construction" : false, "index" : "2" });
+                    skLineSegment(sketch, "HvZjgOkuPsw4", { "construction" : false, "index" : "3" });
+                    {
+                        var RNjNkXkdzADyFe_query;
+                        RNjNkXkdzADyFe_query=qCompressed(1.0,"%B5$QueryM4Sa$entityTypeBa$EntityTypeS6$VERTEXSb$historyTypeS8$CREATIONSb$operationIdB2$IdA1S6.7$OriginpointOpS9$queryTypeS5$DUMMY",id);
+                        skConstraint(sketch, "N0In4OvMsADF.startSnap0", { "constraintType" : ConstraintType.COINCIDENT, "index" : "1", "name" : "", "localFirst" : "N0In4OvMsADF.start", "externalSecond" : qUnion([RNjNkXkdzADyFe_query]) });
+                    }
+                    {
+                        skConstraint(sketch, "N0In4OvMsADF.endSnap0", { "constraintType" : ConstraintType.VERTICAL, "index" : "1", "name" : "", "localFirst" : "N0In4OvMsADF" });
+                    }
+                    {
+                        skConstraint(sketch, "7sWKAgpUFfGb.startSnap", { "constraintType" : ConstraintType.COINCIDENT, "index" : "2", "name" : "", "localFirst" : "7sWKAgpUFfGb.start", "localSecond" : "N0In4OvMsADF.end" });
+                    }
+                    {
+                        var qMHIGbtJCWAdRp_query;
+                        qMHIGbtJCWAdRp_query=qCompressed(1.0,"%B5$QueryM4Sa$entityTypeBa$EntityTypeS6$VERTEXSb$historyTypeS8$CREATIONSb$operationIdB2$IdA1S6.7$OriginpointOpS9$queryTypeS5$DUMMY",id);
+                        skConstraint(sketch, "7sWKAgpUFfGb.endSnap0", { "constraintType" : ConstraintType.HORIZONTAL, "index" : "1", "name" : "", "localFirst" : "7sWKAgpUFfGb.end", "externalSecond" : qUnion([qMHIGbtJCWAdRp_query]) });
+                    }
+                    {
+                        skConstraint(sketch, "HvZjgOkuPsw4.startSnap", { "constraintType" : ConstraintType.COINCIDENT, "index" : "3", "name" : "", "localFirst" : "HvZjgOkuPsw4.start", "localSecond" : "7sWKAgpUFfGb.end" });
+                    }
+                    {
+                        skConstraint(sketch, "HvZjgOkuPsw4.endSnap0", { "constraintType" : ConstraintType.COINCIDENT, "index" : "4", "name" : "", "localFirst" : "HvZjgOkuPsw4.end", "localSecond" : "N0In4OvMsADF.start" });
+                    }
+                    skSetInitialGuess(sketch, initialGuessFn0frzU0pqRJJtL_0);
+                    skSolve(sketch);
+                }
+            };
+        try(features.Fn0frzU0pqRJJtL_0(id));
+        features.FZkObE7k6nhXspC_0 = function(id)
+            {
+                annotation { 'unused' : true }
+                var features = features;
+                if (true)
+                {
+                    {
+                    }
+                    var VVKtOcDKuwsHSU_query;
+                    VVKtOcDKuwsHSU_query=qCompressed(1.0,"&1da$eJyFkF9vgjAUxb9M9zhDEUQfK3+0KuBuMYt7MUCrdkZAqBr26VdxMVu2ZC9Ne885v3tvn8Y2ejmLug1thk3EZZMeM7k7p0qWhZeqlODQ/K0kbSXYECXxMl7Ek7W+ikJJJUVD+sR0DU3LEBe1vAge1OWxq6R3U3sLj1PkPx7MQr438XVkLxtV1u0X3gWfJDSOtFBWou46Uz42EeUEM4x7AxQUxrb+WBnVCWYztdgYV1mLuGIjdLpt1YE4YnM/cacbP0posmYCNQeh8v19AMpZjiKDFlZ8CRviBWDDABwYwsjNdZtn3nOQPFa1LBTkzEE0XAKNEu8Z3zcFqzsfKcggBw5CY53mdU521SrYTrJvBmxqB+4Dtv8lTC9v77v4cF42V+tPAtiuo/8vIK7/U/sEk7uWaw==",id);
+                    annotation { "Feature Name" : "Extrude 1" }
+                    extrude(context, id + "FZkObE7k6nhXspC_0", { "domain" : OperationDomain.MODEL, "bodyType" : ExtendedToolBodyType.SOLID, "operationType" : NewBodyOperationType.NEW, "surfaceOperationType" : NewSurfaceOperationType.NEW, "flatOperationType" : FlatOperationType.REMOVE, "entities" : qUnion([VVKtOcDKuwsHSU_query]), "surfaceEntities" : qUnion([]), "wallShape" : qUnion([]), "midplane" : false, "thickness1" : { 'value' : try(0.25 * inch), 'expression' : "0.25 in" }.value, "flipWall" : false, "thickness2" : { 'value' : try(0 * inch), 'expression' : "0 in" }.value, "thickness" : { 'value' : try(0.25 * inch), 'expression' : "0.25 in" }.value, "endBound" : BoundingType.BLIND, "oppositeDirection" : true, "depth" : { 'value' : try(1 * inch), 'expression' : "1 in" }.value, "endBoundEntityFace" : qUnion([]), "endBoundEntityBody" : qUnion([]), "endBoundEntityVertex" : qUnion([]), "hasOffset" : false, "offsetDistance" : { 'value' : try(1 * inch), 'expression' : "1 in" }.value, "offsetOppositeDirection" : false, "hasExtrudeDirection" : false, "extrudeDirection" : qUnion([]), "startOffset" : false, "startOffsetBound" : StartOffsetType.BLIND, "startOffsetDistance" : { 'value' : try(1 * inch), 'expression' : "1 in" }.value, "startOffsetOppositeDirection" : false, "startOffsetEntity" : qUnion([]), "symmetric" : false, "hasDraft" : false, "draftAngle" : { 'value' : try(3 * degree), 'expression' : "3 deg" }.value, "draftPullDirection" : false, "hasSecondDirection" : false, "secondDirectionBound" : BoundingType.BLIND, "secondDirectionOppositeDirection" : true, "secondDirectionDepth" : { 'value' : try(1 * inch), 'expression' : "1 in" }.value, "secondDirectionBoundEntityFace" : qUnion([]), "secondDirectionBoundEntityBody" : qUnion([]), "secondDirectionBoundEntityVertex" : qUnion([]), "hasSecondDirectionOffset" : false, "secondDirectionOffsetDistance" : { 'value' : try(1 * inch), 'expression' : "1 in" }.value, "secondDirectionOffsetOppositeDirection" : false, "hasSecondDirectionDraft" : false, "secondDirectionDraftAngle" : { 'value' : try(3 * degree), 'expression' : "3 deg" }.value, "secondDirectionDraftPullDirection" : false, "defaultScope" : false, "booleanScope" : qUnion([]), "defaultSurfaceScope" : true, "booleanSurfaceScope" : qUnion([]) });
+                }
+            };
+        try(features.FZkObE7k6nhXspC_0(id));
+        return context;
+    }, inch, {});

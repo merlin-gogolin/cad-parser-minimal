@@ -1,0 +1,12 @@
+/.github
+/.vscode
+*.pyc
+__pycache__/
+examples/frames/*.png
+examples/demo.ipynb
+examples/demo.stl
+/cad_parser/__pycache__/
+fs_test/
+json_test/
+nucad_test/
+generated_model.stl
