@@ -103,9 +103,13 @@ def begin_sketch(origin=(0, 0, 0), normal=(0, 0, 1)):
     z = gp_Dir(*normal)
 
     # Select reference axis for constructing X direction
-    # Minimal fix (Option B): if normal is exactly +Y, use ref = -Z to ensure u->+X
+    # CRITICAL FIX: For downward-facing normals (0,0,-1), we need to ensure
+    # the X direction matches the upward-facing case to keep coordinates consistent
     if normal == (0, 1, 0):
         ref = gp_Dir(0, 0, -1)
+    elif normal == (0, 0, -1):
+        # For downward normal, use -Y as reference to get X pointing in +X direction
+        ref = gp_Dir(0, -1, 0)
     else:
         if abs(z.Dot(gp_Dir(0, 0, 1))) < 0.9:
             ref = gp_Dir(0, 0, 1)

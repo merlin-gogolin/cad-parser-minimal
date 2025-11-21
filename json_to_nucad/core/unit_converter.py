@@ -34,7 +34,17 @@ class UnitConverter:
     def parse_parameter_value(self, param) -> float:
         """Extract numeric value from parameter dictionary or raw value."""
         if isinstance(param, dict):
-            value = float(param.get("value", 0))
+            raw_value = param.get("value", 0)
+            # Handle fraction strings like "(15/32)" or "15/32"
+            if isinstance(raw_value, str) and '/' in raw_value:
+                raw_value = raw_value.strip('()')
+                try:
+                    numerator, denominator = raw_value.split('/')
+                    value = float(numerator) / float(denominator)
+                except (ValueError, ZeroDivisionError):
+                    value = 0.0
+            else:
+                value = float(raw_value)
             unit = param.get("unit", "")
             return self.convert_distance(value, unit)
         elif isinstance(param, (int, float)):

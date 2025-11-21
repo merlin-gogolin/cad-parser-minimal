@@ -12,3 +12,10 @@ nucad_test/
 generated_model.stl
 deprecated/
 frames/
+stl_test/
+tests/
+test_*.py
+docs/
+.pytest_cache/
+stl_ground_truth/
+refs/

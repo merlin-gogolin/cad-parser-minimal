@@ -74,23 +74,35 @@ def extrude(
 
     normal_dir = current_plane.Direction()
     vx, vy, vz = normal_dir.X(), normal_dir.Y(), normal_dir.Z()
+    
+    # Get plane origin to check if we're at the world origin
+    plane_origin = current_plane.Location()
+    ox, oy, oz = plane_origin.X(), plane_origin.Y(), plane_origin.Z()
+
+    # ONSHAPE CONVENTION FIX: OnShape and nuCAD have opposite Y-axis conventions,
+    # but ONLY for sketches on the default Front/Back plane at the world origin.
+    # For face-based sketches (even with Y-normals), use the standard extrusion direction.
+    is_origin = abs(ox) < 0.001 and abs(oy) < 0.001 and abs(oz) < 0.001
+    is_y_normal = abs(vy) > 0.9 and abs(vx) < 0.1 and abs(vz) < 0.1
+    is_default_front_plane = is_origin and is_y_normal
+    direction_multiplier = -1.0 if is_default_front_plane else 1.0
 
     # Forward extrude (always)
-    vec_fwd = gp_Vec(vx, vy, vz) * float(height)
+    vec_fwd = gp_Vec(vx, vy, vz) * float(height) * direction_multiplier
     solid_fwd = BRepPrimAPI_MakePrism(shape, vec_fwd).Shape()
 
     if direction == "one":
         return solid_fwd
 
     if direction == "symmetric":
-        vec_bwd = gp_Vec(-vx, -vy, -vz) * float(height)
+        vec_bwd = gp_Vec(-vx, -vy, -vz) * float(height) * direction_multiplier
         solid_bwd = BRepPrimAPI_MakePrism(shape, vec_bwd).Shape()
         return BRepAlgoAPI_Fuse(solid_fwd, solid_bwd).Shape()
 
     # direction == "two"
     if opposite_height is None or float(opposite_height) == 0.0:
         raise ValueError("opposite_height must be provided and non-zero for two-sided extrusion")
-    vec_bwd = gp_Vec(-vx, -vy, -vz) * float(opposite_height)
+    vec_bwd = gp_Vec(-vx, -vy, -vz) * float(opposite_height) * direction_multiplier
     solid_bwd = BRepPrimAPI_MakePrism(shape, vec_bwd).Shape()
     return BRepAlgoAPI_Fuse(solid_fwd, solid_bwd).Shape()
 

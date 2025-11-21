@@ -10,19 +10,58 @@ def main(input_path="fs/violin.txt", output_path="features.json", report_descrip
     features = {}
     created_plane_ids = []
     feature_ids = []
+    feature_names = {}  # Map feature_id -> feature_name
     primitive_ids = []
+    primitive_names = {}  # Map primitive_id -> friendly_name like "line 1", "circle 2"
+    
+    # Counters for generating friendly names
+    primitive_counters = {}  # Map primitive_type -> counter
 
     for i, (fid, block) in enumerate(FeatureParser.extract_feature_blocks(text), start=1):
         name = FeatureParser.extract_name(block)
         description = FeatureParser.extract_description(block)
         feature_type, feature_id = FeatureParser.extract_type_and_id(description)
         feature_ids.append((feature_id, feature_type))
+        feature_names[feature_id] = name  # Store the feature name
         if feature_type == "cPlane":
             created_plane_ids.append(feature_id)
 
         initial_guess = PrimitiveParser.extract_initial_guess(description, feature_id)
         if feature_type == "newSketch":
             primitives = PrimitiveParser.extract_sketch_primitives(description, initial_guess, primitive_ids)
+            
+            # Assign friendly names to primitives
+            for prim_id, prim_data in primitives.items():
+                prim_type = prim_data.get("type", "unknown")
+                
+                # Map technical type to friendly name
+                type_to_friendly = {
+                    "skLineSegment": "line",
+                    "skCircle": "circle",
+                    "skArc": "arc",
+                    "skPoint": "point",
+                    "skEllipse": "ellipse",
+                    "skSplineSegment": "spline",
+                    "skInterpolatedSpline": "spline",
+                    "skInterpolatedSplineSegment": "spline",
+                    "skText": "text"
+                }
+                
+                friendly_type = type_to_friendly.get(prim_type, prim_type)
+                
+                # Increment counter for this type
+                if friendly_type not in primitive_counters:
+                    primitive_counters[friendly_type] = 1
+                else:
+                    primitive_counters[friendly_type] += 1
+                
+                # Create friendly name like "line 1", "circle 2"
+                friendly_name = f"{friendly_type} {primitive_counters[friendly_type]}"
+                primitive_names[prim_id] = friendly_name
+                
+                # Add the friendly name to the primitive data itself
+                prim_data["name"] = friendly_name
+            
             feature_data = {
                 "name": name,
                 "type": feature_type,
@@ -39,7 +78,7 @@ def main(input_path="fs/violin.txt", output_path="features.json", report_descrip
             }
 
         if feature_type == "newSketch":
-            sketch_plane = PlaneParser.extract_sketch_plane(description, created_plane_ids, feature_ids, primitive_ids)
+            sketch_plane = PlaneParser.extract_sketch_plane(description, created_plane_ids, feature_ids, primitive_ids, feature_names, primitive_names)
             feature_data["sketch_plane"] = sketch_plane
 
         if report_description:

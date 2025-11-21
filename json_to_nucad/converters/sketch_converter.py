@@ -121,15 +121,27 @@ class SketchConverter(BaseFeatureConverter):
                 elif face_type == "SWEPT_FACE":
                     # Try each referenced edge until we find a mapped face
                     face_ref = None
+                    found_edges = []
                     if extrude_feature_id and referenced_primitives:
                         print(f"      SWEPT_FACE: Checking edges {referenced_primitives} for extrude {extrude_feature_id}")
                         for edge_id in referenced_primitives:
-                            face_ref = self.geometry_tracker.get_face_for_edge(extrude_feature_id, edge_id)
-                            if face_ref:
-                                print(f"        ✓ Found mapping: edge {edge_id} -> {face_ref}")
-                                break
+                            edge_face = self.geometry_tracker.get_face_for_edge(extrude_feature_id, edge_id)
+                            if edge_face:
+                                print(f"        ✓ Found mapping: edge {edge_id} -> {edge_face}")
+                                found_edges.append((edge_id, edge_face))
                             else:
                                 print(f"        ✗ No mapping for edge {edge_id}")
+                        
+                        # If we found mappings, use the first one
+                        # BUT: if multiple edges were referenced and we only found some,
+                        # this might indicate an intersection - use fallback instead
+                        if found_edges:
+                            if len(referenced_primitives) > 1 and len(found_edges) < len(referenced_primitives):
+                                # Partial match - referenced edges from multiple extrudes
+                                # Use fallback to get a more stable face reference
+                                print(f"        ⚠ Partial edge match ({len(found_edges)}/{len(referenced_primitives)}) - using fallback")
+                            else:
+                                face_ref = found_edges[0][1]
                     
                     # Fallback to generic side face lookup
                     if not face_ref and extrude_feature_id:
@@ -268,9 +280,11 @@ class SketchConverter(BaseFeatureConverter):
         all_loops = outer_loops + hole_loops
         
         for loop in all_loops:
-            # Skip single-segment open loops (construction lines, etc.)
-            if len(loop["primitives"]) == 1 and not loop["is_closed"]:
-                print(f"    Skipping single open segment (likely construction line)")
+            # Skip single-segment open loops - they cannot form valid faces
+            # These are typically construction lines or unconnected segments
+            is_single_open = len(loop["primitives"]) == 1 and not loop["is_closed"]
+            if is_single_open:
+                print(f"    Skipping single open segment (cannot form a face)")
                 continue
                 
             sketch_actions.append(StartLoop())
@@ -301,6 +315,10 @@ class SketchConverter(BaseFeatureConverter):
         for primitive_id, primitive_data in primitives.items():
             ptype = primitive_data.get("type", "")
             geometry = primitive_data.get("geometry", {})
+            
+            # Skip construction primitives (they're for reference only, not actual geometry)
+            if primitive_data.get("construction", False):
+                continue
             
             if ptype == "skLineSegment" and "start" in geometry and "end" in geometry:
                 # Transform coordinates for face-based or plane-based sketching
@@ -483,13 +501,184 @@ class SketchConverter(BaseFeatureConverter):
         return result_loops
     
     def _find_connected_loops(self, segments: List[Dict]) -> List[List[Dict]]:
-        """Find connected loops from segments with flexible start/end matching, transposition, and ID-based grouping."""
+        """Find connected loops from segments with flexible start/end matching, transposition, and ID-based grouping.
+        
+        Also handles T-intersections where segments don't connect at endpoints but intersect
+        or touch in the middle (common in CAD sketches where users create overlapping geometry).
+        """
         all_segments = segments
         loops = []
         used_segments = set()
         
-        # Use 1e-6 tolerance as requested, converted to millimeters
-        tolerance = 1e-6 * 1000.0  # Convert to millimeters
+        # Use a generous tolerance to handle OnShape's constraint-based modeling
+        # where exported coordinates may not perfectly match due to floating-point representation,
+        # incomplete constraint resolution, or T-intersections where segments touch but don't
+        # have coincident endpoints
+        tolerance = 0.002 * 1000.0  # 2mm tolerance (converted to millimeters)
+        
+        def points_equal(p1: Tuple[float, float], p2: Tuple[float, float]) -> bool:
+            """Check if two points are equal within precise tolerance."""
+            distance = math.sqrt((p1[0] - p2[0])**2 + (p1[1] - p2[1])**2)
+            return distance < tolerance
+        
+        def point_lies_on_segment(point: Tuple[float, float], segment: Dict) -> bool:
+            """Check if a point lies on a line segment (within tolerance)."""
+            if segment["type"] != "line":
+                return False  # For now, only handle lines
+            
+            seg_start = tuple(segment["start"]) if isinstance(segment["start"], list) else segment["start"]
+            seg_end = tuple(segment["end"]) if isinstance(segment["end"], list) else segment["end"]
+            px, py = point
+            x1, y1 = seg_start
+            x2, y2 = seg_end
+            
+            # Check if point is within bounding box of segment (with tolerance)
+            min_x, max_x = min(x1, x2) - tolerance, max(x1, x2) + tolerance
+            min_y, max_y = min(y1, y2) - tolerance, max(y1, y2) + tolerance
+            if not (min_x <= px <= max_x and min_y <= py <= max_y):
+                return False
+            
+            # Calculate distance from point to line segment
+            # Vector from start to end
+            dx = x2 - x1
+            dy = y2 - y1
+            length_sq = dx*dx + dy*dy
+            
+            if length_sq < 1e-10:  # Degenerate segment
+                dist = math.sqrt((px - x1)**2 + (py - y1)**2)
+                return dist < tolerance
+            
+            # Project point onto line
+            t = max(0, min(1, ((px - x1) * dx + (py - y1) * dy) / length_sq))
+            proj_x = x1 + t * dx
+            proj_y = y1 + t * dy
+            
+            dist = math.sqrt((px - proj_x)**2 + (py - proj_y)**2)
+            return dist < tolerance
+        
+        def trim_segment_at_points(segment: Dict, points: List[Tuple[float, float]]) -> List[Dict]:
+            """Trim a line segment at multiple points, creating multiple sub-segments."""
+            if segment["type"] != "line" or not points:
+                return [segment]
+            
+            seg_start = tuple(segment["start"]) if isinstance(segment["start"], list) else segment["start"]
+            seg_end = tuple(segment["end"]) if isinstance(segment["end"], list) else segment["end"]
+            
+            # Sort points along the segment
+            dx = seg_end[0] - seg_start[0]
+            dy = seg_end[1] - seg_start[1]
+            
+            # Calculate t parameter for each point
+            points_with_t = []
+            for p in points:
+                if abs(dx) > abs(dy):
+                    t = (p[0] - seg_start[0]) / dx if dx != 0 else 0
+                else:
+                    t = (p[1] - seg_start[1]) / dy if dy != 0 else 0
+                points_with_t.append((t, p))
+            
+            # Sort by t parameter
+            points_with_t.sort(key=lambda x: x[0])
+            
+            # Create sub-segments
+            sub_segments = []
+            all_points = [seg_start] + [p for _, p in points_with_t] + [seg_end]
+            
+            for i in range(len(all_points) - 1):
+                if not points_equal(all_points[i], all_points[i+1]):
+                    sub_segments.append({
+                        "type": "line",
+                        "start": all_points[i],
+                        "end": all_points[i+1],
+                        "id": segment["id"] + f".trim{i}"
+                    })
+            
+            return sub_segments if sub_segments else [segment]
+        
+        # STEP 1: Snap nearby endpoints together
+        # If two segment endpoints are within tolerance, snap them to their average position
+        def snap_segments(segments: List[Dict]) -> List[Dict]:
+            """Snap segment endpoints that are within tolerance to the same coordinates."""
+            # Collect all unique endpoints
+            points = []
+            for seg in segments:
+                seg_start = tuple(seg["start"]) if isinstance(seg["start"], list) else seg["start"]
+                seg_end = tuple(seg["end"]) if isinstance(seg["end"], list) else seg["end"]
+                points.append(seg_start)
+                points.append(seg_end)
+            
+            # Group points that are within tolerance
+            point_groups = []
+            used = set()
+            for i, p1 in enumerate(points):
+                if i in used:
+                    continue
+                group = [p1]
+                used.add(i)
+                for j, p2 in enumerate(points):
+                    if j <= i or j in used:
+                        continue
+                    if points_equal(p1, p2):
+                        group.append(p2)
+                        used.add(j)
+                if len(group) > 1:
+                    point_groups.append(group)
+            
+            # Calculate average position for each group
+            snap_map = {}
+            for group in point_groups:
+                avg_x = sum(p[0] for p in group) / len(group)
+                avg_y = sum(p[1] for p in group) / len(group)
+                avg_point = (avg_x, avg_y)
+                for p in group:
+                    snap_map[p] = avg_point
+            
+            # Apply snapping to all segments
+            snapped = []
+            for seg in segments:
+                seg_copy = seg.copy()
+                seg_start = tuple(seg["start"]) if isinstance(seg["start"], list) else seg["start"]
+                seg_end = tuple(seg["end"]) if isinstance(seg["end"], list) else seg["end"]
+                
+                if seg_start in snap_map:
+                    seg_start = snap_map[seg_start]
+                if seg_end in snap_map:
+                    seg_end = snap_map[seg_end]
+                
+                seg_copy["start"] = list(seg_start) if isinstance(seg["start"], list) else seg_start
+                seg_copy["end"] = list(seg_end) if isinstance(seg["end"], list) else seg_end
+                snapped.append(seg_copy)
+            
+            return snapped
+        
+        all_segments = snap_segments(all_segments)
+        
+        # STEP 2: Detect T-intersections and trim segments
+        trimmed_segments = []
+        for seg in all_segments:
+            trim_points = []
+            
+            # Check if any other segment's endpoints lie on this segment
+            for other_seg in all_segments:
+                if other_seg == seg:
+                    continue
+                
+                other_start = tuple(other_seg["start"]) if isinstance(other_seg["start"], list) else other_seg["start"]
+                other_end = tuple(other_seg["end"]) if isinstance(other_seg["end"], list) else other_seg["end"]
+                
+                if point_lies_on_segment(other_start, seg):
+                    trim_points.append(other_start)
+                if point_lies_on_segment(other_end, seg):
+                    trim_points.append(other_end)
+            
+            # Trim this segment at the intersection points
+            if trim_points:
+                trimmed_segments.extend(trim_segment_at_points(seg, trim_points))
+            else:
+                trimmed_segments.append(seg)
+        
+        # STEP 3: Use the trimmed segments to find connected loops
+        all_segments = trimmed_segments
         
         def extract_base_id(segment_id: str) -> str:
             """Extract base ID from segment ID (e.g., '4NgUrsMrXOQs.0' -> '4NgUrsMrXOQs')."""
@@ -508,11 +697,6 @@ class SketchConverter(BaseFeatureConverter):
                     groups[base_id] = []
                 groups[base_id].append(segment)
             return groups
-        
-        def points_equal(p1: Tuple[float, float], p2: Tuple[float, float]) -> bool:
-            """Check if two points are equal within precise tolerance."""
-            distance = math.sqrt((p1[0] - p2[0])**2 + (p1[1] - p2[1])**2)
-            return distance < tolerance
         
         def transpose_segment(segment: Dict) -> Dict:
             """Create a reversed/transposed version of a segment."""

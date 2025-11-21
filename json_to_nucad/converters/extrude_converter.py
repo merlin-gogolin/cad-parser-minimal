@@ -61,6 +61,13 @@ class ExtrudeConverter(BaseFeatureConverter):
         end_bound = parameters.get("endBound", "")
         is_symmetric = "SYMMETRIC" in end_bound
         
+        # Also check for separate "symmetric" parameter (OnShape can use this instead of endBound)
+        symmetric_param = parameters.get("symmetric", "false")
+        if isinstance(symmetric_param, str):
+            symmetric_param = symmetric_param.lower() == "true"
+        if symmetric_param:
+            is_symmetric = True
+        
         # Check for oppositeDirection flag (common in CAD applications)
         opposite_direction = parameters.get("oppositeDirection", "false")
         if isinstance(opposite_direction, str):
@@ -81,13 +88,9 @@ class ExtrudeConverter(BaseFeatureConverter):
             depth = -depth
             print(f"    Extrude direction flipped due to oppositeDirection=true")
         
-        # 3. Flip direction if the previous sketch targeted START cap (i.e., bottom vs +Z top)
-        try:
-            last_side = self.geometry_tracker.get_last_sketch_side()
-            if isinstance(last_side, str) and last_side.upper() == "START":
-                depth = -abs(depth)
-        except Exception:
-            pass
+        # NOTE: The geometry_utils.py now flips horizontal cap normals to always point UP
+        # So we do NOT need to flip the height for START caps anymore - both caps
+        # have upward-pointing normals and should use positive height to extrude upward
         
         operation_type = parameters.get("operationType", "NEW")
         
@@ -114,14 +117,15 @@ class ExtrudeConverter(BaseFeatureConverter):
                 solid_id=new_solid,
                 depth=depth,
                 entities=entities,
-                operation_type=operation_type
+                operation_type=operation_type,
+                is_symmetric=is_symmetric
             )
         except Exception:
             pass
         
         return actions
 
-    def _register_side_faces_for_extrude(self, extrude_feature_id: str | None, sketch_id: str | None, solid_id: str, depth: float, entities: list = None, operation_type: str = ""):
+    def _register_side_faces_for_extrude(self, extrude_feature_id: str | None, sketch_id: str | None, solid_id: str, depth: float, entities: list = None, operation_type: str = "", is_symmetric: bool = False):
         if not extrude_feature_id or not sketch_id:
             return
 
@@ -189,8 +193,9 @@ class ExtrudeConverter(BaseFeatureConverter):
             print(f"    ADD operation detected - skipping first edge ({edge_sequence[0]}) which is constrained to base solid")
             edge_sequence = edge_sequence[1:]
         
-        # Side faces start at index 2 (after bottom cap at 0 and top cap at 1)
-        base_index = 2
+        # Swept faces come FIRST in OpenCASCADE's creation order (verified empirically)
+        # Caps appear at the end: indices len(swept_faces) and len(swept_faces)+1
+        base_index = 0
         mappings = []
         print(f"    Registering edges for extrude {extrude_feature_id} to solid {solid_id} (operation: {operation_type}):")
         print(f"      Edge sequence: {edge_sequence}")
@@ -200,3 +205,13 @@ class ExtrudeConverter(BaseFeatureConverter):
             print(f"      {primitive_id} -> {face_ref}")
 
         self.geometry_tracker.register_extrude_side_faces(extrude_feature_id, solid_id, mappings)
+        
+        # NEW: Register metadata for calculating cap face indices
+        # This allows downstream features to calculate cap positions based on actual geometry
+        num_swept_faces = len(edge_sequence)
+        self.geometry_tracker.register_extrude_metadata(
+            extrude_feature_id, 
+            num_swept_faces,
+            operation_type,
+            is_symmetric
+        )

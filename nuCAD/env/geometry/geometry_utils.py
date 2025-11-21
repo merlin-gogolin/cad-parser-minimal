@@ -23,6 +23,9 @@ def get_face_data(on_solid_face: Optional[str], origin: Tuple[float, float, floa
     If on_solid_face is provided, pick the point on the face where the normal line
     passes through the world origin (0, 0, 0). For planar faces, use the underlying
     unbounded plane; otherwise project onto the surface.
+    
+    IMPORTANT: For cap faces (top/bottom of extrusions), this function automatically
+    flips the normal to point outward from the solid if it's pointing inward.
     """
     from OCC.Core.BRep import BRep_Tool
     from OCC.Core.Bnd import Bnd_Box
@@ -56,12 +59,18 @@ def get_face_data(on_solid_face: Optional[str], origin: Tuple[float, float, floa
             proj.Translate(gp_Vec(n_dir).Multiplied(-d))
 
             origin = (proj.X(), proj.Y(), proj.Z())
-            normal = (n_dir.X(), n_dir.Y(), n_dir.Z())
+            normal_vec = (n_dir.X(), n_dir.Y(), n_dir.Z())
 
-            # Optional: flip normal to point toward the origin
-            # if gp_Vec(proj, origin_world).Dot(gp_Vec(n_dir)) < 0:
-            #     n_dir = gp_Dir(-n_dir.X(), -n_dir.Y(), -n_dir.Z())
-            #     normal = (n_dir.X(), n_dir.Y(), n_dir.Z())
+            # Apply face orientation to get the outward-pointing normal
+            # OpenCASCADE faces have FORWARD or REVERSED orientation
+            # REVERSED means we need to flip the underlying surface normal
+            from OCC.Core.TopAbs import TopAbs_REVERSED
+            
+            if face.Orientation() == TopAbs_REVERSED:
+                # Face is reversed in the solid - flip the normal to point outward
+                normal_vec = (-normal_vec[0], -normal_vec[1], -normal_vec[2])
+            
+            normal = normal_vec
 
         else:
             # Non-planar: closest point to origin; at that point, O-P is along the surface normal
